@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class YourNameUi extends StatefulWidget {
   const YourNameUi({Key? key}) : super(key: key);
@@ -10,12 +9,114 @@ class YourNameUi extends StatefulWidget {
 }
 
 class _YourNameUiState extends State<YourNameUi> {
+  //สร้าง object Controller ของ Textfield
+  TextEditingController nameCtrl = TextEditingController(text: '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green[800],
+        title: Text(
+          'Add/Edit Name',
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              'ป้อนชื่อของคุณ',
+              style: GoogleFonts.itim(
+                fontSize: 35,
+                color: Colors.green[800],
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 50,
+                right: 50,
+              ),
+              child: TextField(
+                controller: nameCtrl,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'ป้อนชื่อ',
+                  hintStyle: TextStyle(
+                    color: Colors.grey[400],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                //เขียนโค้ดตรวจสอบว่าได้ป้อนหรือยัง
+                if (nameCtrl.text.trim().length == 0) {
+                  //แสดง alert เตือนผู้ใช้ให้ป้อน
+                  showDialog(
+                    context: context,
+                    builder: (context){
+                      return AlertDialog(
+                    title: Text(
+                      'คำเตือน',
+                    ),
+                    content: Text(
+                      'ป้อนชื่อของคุณด้วย',
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'ตกลง',
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green[800],
+                        ),
+                      ),
+                    ],
+                  );
+                    },
+                  );
+
+                } else {
+                  //บันทึกลง SharePreference แล้วกลับไปหน้า HomeUi
+                }
+              },
+              child: Text(
+                'บันทึก',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(
+                  MediaQuery.of(context).size.width * 0.7,
+                  50,
+                ),
+                primary: Colors.green[800],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
-
-
   }
 }
