@@ -34,9 +34,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  google_fonts: ^3.0.1
-  image_picker: ^0.8.5+3
-  shared_preferences: ^2.0.15
+  google_fonts: ^3.0.1 #สามารถใช้ font ของ google ได้
+  image_picker: ^0.8.5+3 # สามารถใช้กล้องเพื่อถ่ายภาพหรือให้งานแกลอรี่เพื่อเลือกภาพ
+  shared_preferences: ^2.0.15 #เอาไว้เก็บข้อมูลในเครื่องแบบ Key : Value
+  # ใช้ path_provider และ patch สำหรับจัดเก็บภาพ
+  path_provider: ^2.0.11 #จำตำแหน่งที่อยู่ของไฟล์ต่างๆในเครื่อง
+  path: ^1.8.0 #จัดการเกี่ยวกับ path เช่น ไฟล์ Directory
 
 dev_dependencies:
   flutter_test:
